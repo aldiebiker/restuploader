@@ -5,14 +5,15 @@
 ```bash
 git clone https://github.com/aldiebiker/restuploader.git
 cd restuploader
-mvn clean package
+mvn spring-boot:run
 ```
 
-## Run the application
-
-```bash
- java -jar target/restuploader-0.0.1-SNAPSHOT.jar
+## Test the application
+ 
+ ```bash
+ curl -i -X POST -H "Content-Type: multipart/form-data"  -F "fileName=@2018.png"  http://localhost:8080/files/
  ```
  
- ## Limitation
+ 
+ ## Limitation (configurable)
  Max file size 1MB 

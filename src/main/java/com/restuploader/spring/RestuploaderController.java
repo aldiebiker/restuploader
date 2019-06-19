@@ -23,7 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/")
-public class RestuploaderController<T> {
+public class RestuploaderController{
 
 	private Logger logger = LoggerFactory.getLogger(RestuploaderController.class);
 
@@ -31,14 +31,14 @@ public class RestuploaderController<T> {
 	FileUploaderService fileUploaderService;
 
 	@PostMapping("/files")
-	public ResponseEntity<T> uploadFile(@RequestParam("fileName") MultipartFile file) {
+	public ResponseEntity<?> uploadFile(@RequestParam("fileName") MultipartFile file) {
 		try {
 			callService(file, file.getOriginalFilename());
 		} catch (IOException | IllegalArgumentException | IllegalStateException e) {
 			logger.info(e.getMessage(), e);
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-        return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	private void callService(MultipartFile part, String fileName) throws IOException {
@@ -48,4 +48,3 @@ public class RestuploaderController<T> {
 	}
 
 }
-

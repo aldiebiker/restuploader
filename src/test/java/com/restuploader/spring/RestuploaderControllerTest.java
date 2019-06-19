@@ -29,7 +29,7 @@ public class RestuploaderControllerTest {
 	@MockBean
 	private FileUploaderService fileUploaderService;
 
-	MockMultipartFile multipartFile;
+	private MockMultipartFile multipartFile;
 
 	@Before
 	public void setUp() {
